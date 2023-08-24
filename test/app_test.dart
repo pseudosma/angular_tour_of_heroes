@@ -1,14 +1,13 @@
 @TestOn('browser')
+
 import 'package:ngtest/ngtest.dart';
-import 'package:test/test.dart';
 import 'package:angular_tour_of_heroes/app_component.dart';
 import 'package:angular_tour_of_heroes/app_component.template.dart' as ng;
-
-// Testing info: https://angulardart.xyz/guide/testing
+import 'package:test/test.dart';
 
 void main() {
   final testBed = NgTestBed<AppComponent>(ng.AppComponentNgFactory);
-  NgTestFixture<AppComponent> fixture;
+  late NgTestFixture<AppComponent> fixture;
 
   setUp(() async {
     fixture = await testBed.create();
@@ -16,7 +15,17 @@ void main() {
 
   tearDown(disposeAnyRunningTest);
 
-  test('heading', () {
-    expect(fixture.text, contains('My First AngularDart App'));
+  test('Default greeting', () {
+    expect(fixture.text, 'Hello Angular');
+  });
+
+  test('Greet world', () async {
+    await fixture.update((c) => c.name = 'World');
+    expect(fixture.text, 'Hello World');
+  });
+
+  test('Greet world HTML', () {
+    final html = fixture.rootElement.innerHtml;
+    expect(html, '<h1>Hello Angular</h1>');
   });
 }
