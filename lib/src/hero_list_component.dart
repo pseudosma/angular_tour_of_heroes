@@ -1,6 +1,7 @@
+import 'dart:html';
+
 import 'package:ngdart/angular.dart';
 import 'hero.dart';
-import 'mock_heroes.dart';
 import 'hero_service.dart';
 import 'package:ngrouter/ngrouter.dart';
 import 'route_paths.dart';
@@ -34,5 +35,21 @@ class HeroListComponent implements OnInit {
 
   Future<NavigationResult> gotoDetail() =>
       _router.navigate(_heroUrl(selected!.id));
+
+  Future<void> add(InputElement event) async {
+  final String? name = event.value?.trim();
+  if (name == null || name.isEmpty) return;
+  heroes.add(await _heroService.create(name));
+  selected = null;
+  event.value = "";
+}
+
+Future<void> delete(Hero hero, Event event) async {
+  await _heroService.delete(hero.id);
+  heroes.remove(hero);
+  if (selected == hero) selected = null;
+  event.stopPropagation();
+}
+
 }
 

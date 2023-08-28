@@ -1,5 +1,7 @@
 # Angular Tour of Heroes
 
+This is just a reference project. Each commit aligns with a chapter of the Angular Dart Tour of Heroes tutorial.
+
 A web app that uses [AngularDart](https://angulardart.xyz) and
 [AngularDart Components](https://pub.dev/ngcomponents).
 

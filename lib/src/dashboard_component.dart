@@ -4,12 +4,13 @@ import 'package:ngrouter/ngrouter.dart';
 import 'hero.dart';
 import 'hero_service.dart';
 import 'route_paths.dart';
+import 'hero_search_component.dart';
 
 @Component(
   selector: 'my-dashboard',
   templateUrl: 'dashboard_component.html',
   styleUrls: ['dashboard_component.css'],
-  directives: [coreDirectives, routerDirectives],
+  directives: [coreDirectives, HeroSearchComponent, routerDirectives],
 )
 
 class DashboardComponent implements OnInit {
@@ -21,7 +22,6 @@ class DashboardComponent implements OnInit {
 
   @override
   void ngOnInit() async {
-    print("getting heroes");
     heroes = (await _heroService.getAll()).skip(1).take(4).toList();
   }
 

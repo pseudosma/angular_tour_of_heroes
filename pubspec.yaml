@@ -6,9 +6,11 @@ environment:
   sdk: '>=2.17.0 <3.0.0'
 
 dependencies:
+  http: ^0.13.5
   ngdart: ^7.1.1
   ngforms: ^4.1.1
   ngrouter: ^3.1.1
+  stream_transform: ^2.1.0
 
 dev_dependencies:
   ngtest: ^4.1.1

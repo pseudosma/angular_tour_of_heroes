@@ -12,7 +12,5 @@ class RoutePaths {
 
 int? getId(Map<String, String> parameters) {
   final id = parameters[idParam];
-  print("inside getId");
-  // print(int.tryParse(id!));
   return id == null ? null : int.tryParse(id);
 }
